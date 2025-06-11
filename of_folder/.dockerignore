@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Documentation
+*.md
+docs/
+
+# Tests (exclude from production container)
+tests/
+test_*.py
+*_test.py
+
+# Development
+.pytest_cache/
+.coverage
+.mypy_cache/
+.tox/
+
+# Logs (will be mounted as volumes)
+logs/
+*.log
+
+# Data directories (will be mounted as volumes)
+data/
+models/
+temp/
+
+# Config files that should be mounted
+config/
+.env*
+
+# Unnecessary files
+*.tar.gz
+*.zip
+*.rar 

@@ -1,0 +1,75 @@
+{
+    "name": "Agentic Social Media Dev Environment",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    
+    // Configure VS Code settings and extensions
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": false,
+                "python.linting.flake8Enabled": true,
+                "python.testing.pytestEnabled": true,
+                "python.testing.unittestEnabled": false,
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.flake8",
+                "ms-python.black-formatter",
+                "ms-vscode.vscode-json",
+                "redhat.vscode-yaml",
+                "ms-vscode.docker",
+                "ms-vscode.remote-containers",
+                "ms-toolsai.jupyter",
+                "charliermarsh.ruff"
+            ]
+        }
+    },
+
+    // Environment variables for development
+    "containerEnv": {
+        "PYTHONPATH": "/workspace",
+        "LOG_LEVEL": "INFO",
+        "RICK_MODE": "DEVELOPMENT",
+        "VECTOR_STORE_TYPE": "postgresql"
+    },
+
+    // Mount points
+    "mounts": [
+        "source=${localWorkspaceFolder}/.env,target=/workspace/.env,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/logs,target=/workspace/logs,type=bind,consistency=cached"
+    ],
+
+    // Ports to forward
+    "forwardPorts": [
+        8000,  // Main app
+        8001,  // Secondary app port
+        8002,  // Tertiary app port
+        5432,  // PostgreSQL
+        8888   // Jupyter Lab
+    ],
+
+    // Post-create command
+    "postCreateCommand": "pip install -e . && pre-commit install",
+
+    // Use root user for development (simpler for ML dependencies)
+    "remoteUser": "root",
+
+    // Features to install
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+
+    // Lifecycle scripts
+    "initializeCommand": "echo '🔥 Initializing Rick's Cloud-Native Dev Environment ☠️'",
+    "onCreateCommand": "echo '🚀 Creating development container...'",
+    "updateContentCommand": "pip install -r requirements.txt",
+    "postStartCommand": "echo '✅ Development environment ready!'"
+} 

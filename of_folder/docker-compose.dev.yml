@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  # Development container with hot reloading
+  dev-environment:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    container_name: rick-dev-agentic
+    restart: "no"  # Don't auto-restart in development
+    ports:
+      - "8000:8000"   # Main app
+      - "8001:8001"   # Secondary port
+      - "8888:8888"   # Jupyter Lab
+      - "8002:8002"   # Debug port
+    environment:
+      - PYTHONPATH=/workspace
+      - LOG_LEVEL=DEBUG
+      - RICK_MODE=DEVELOPMENT
+      - DATABASE_URL=postgresql://rick:socialmedia2024@dev-postgres:5432/agentic_social
+      - VECTOR_STORE_TYPE=postgresql
+      - AZURE_COGNITIVE_SEARCH_ENDPOINT=${AZURE_COGNITIVE_SEARCH_ENDPOINT}
+      - AZURE_COGNITIVE_SEARCH_KEY=${AZURE_COGNITIVE_SEARCH_KEY}
+      - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT}
+      - VERTEX_AI_LOCATION=${VERTEX_AI_LOCATION:-us-central1}
+    volumes:
+      # Mount source code for hot reloading
+      - .:/workspace
+      - dev_data:/workspace/data
+      - dev_logs:/workspace/logs
+      - dev_models:/workspace/models
+      # Mount .env file
+      - ./.env:/workspace/.env:ro
+    depends_on:
+      - dev-postgres
+    networks:
+      - dev-network
+    command: >
+      bash -c "
+        echo '🔥 Starting Rick\\'s Dev Environment ☠️' &&
+        pip install -e . &&
+        echo '✅ Ready for development!' &&
+        tail -f /dev/null
+      "
+
+  # Development PostgreSQL
+  dev-postgres:
+    image: postgres:15-alpine
+    container_name: rick-dev-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=agentic_social
+      - POSTGRES_USER=rick
+      - POSTGRES_PASSWORD=socialmedia2024
+    volumes:
+      - dev_postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5433:5432"  # Different port to avoid conflicts
+    networks:
+      - dev-network
+    command: >
+      postgres -c log_statement=all
+      -c log_destination=stderr
+      -c log_min_messages=info
+
+  # Jupyter Lab for development and experimentation
+  jupyter:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    container_name: rick-jupyter
+    restart: "no"
+    ports:
+      - "8888:8888"
+    environment:
+      - PYTHONPATH=/workspace
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - .:/workspace
+      - dev_notebooks:/workspace/notebooks
+    networks:
+      - dev-network
+    command: >
+      bash -c "
+        pip install -e . &&
+        jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+        --NotebookApp.token='' --NotebookApp.password=''
+      "
+
+networks:
+  dev-network:
+    driver: bridge
+    name: rick-dev-network
+
+volumes:
+  dev_postgres_data:
+    name: rick-dev-postgres-data
+  dev_data:
+    name: rick-dev-data
+  dev_logs:
+    name: rick-dev-logs
+  dev_models:
+    name: rick-dev-models
+  dev_notebooks:
+    name: rick-dev-notebooks 

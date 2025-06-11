@@ -1,0 +1,240 @@
+# =============================================================================
+# IMPACT REALTY AI - ROOT LEVEL GITIGNORE
+# Only track the Impact Realty AI project, exclude all other projects
+# =============================================================================
+
+# =============================================================================
+# EXCLUDE ALL OTHER PROJECTS - Only track impact_realty_ai/
+# =============================================================================
+/*
+!/impact_realty_ai/
+
+# =============================================================================
+# Python & Virtual Environments
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments (all variations)
+venv/
+env/
+ENV/
+.venv/
+.env/
+*-venv/
+*_venv/
+*-env/
+*_env/
+langUI-venv/
+lang-venv/
+google-venv/
+myenv/
+virtualenv/
+
+# =============================================================================
+# Environment Variables & Secrets
+# =============================================================================
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.crt
+config.ini
+secrets.json
+
+# =============================================================================
+# Database Files
+# =============================================================================
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+
+# =============================================================================
+# Node.js / Frontend
+# =============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.next/
+out/
+.nuxt/
+dist/
+.cache/
+.parcel-cache/
+
+# =============================================================================
+# Logs & Monitoring
+# =============================================================================
+logs/
+*.log
+*.log.*
+log/
+.logs/
+
+# =============================================================================
+# IDEs & Editors
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.spyderproject
+.spyproject
+.ropeproject
+
+# =============================================================================
+# OS Generated Files
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# =============================================================================
+# Temporary & Cache Files
+# =============================================================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+.pytest_cache/
+.coverage
+.nyc_output
+.tox/
+.cache
+htmlcov/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# =============================================================================
+# AI/ML Specific
+# =============================================================================
+*.pkl
+*.pickle
+*.h5
+*.model
+*.joblib
+*.pt
+*.pth
+models/
+checkpoints/
+wandb/
+mlruns/
+*.faiss
+*.index
+chroma_db/
+vector_store/
+
+# =============================================================================
+# Testing
+# =============================================================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# =============================================================================
+# Development Tools
+# =============================================================================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# =============================================================================
+# Large Files
+# =============================================================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# =============================================================================
+# Jupyter Notebooks
+# =============================================================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# =============================================================================
+# Project Specific Exclusions
+# =============================================================================
+# Exclude all top-level files except specific ones
+/*.py
+/*.json
+/*.txt
+/*.md
+!impact_realty_ai/
+
+# Exclude specific project directories that are showing up
+AI_trading_bot/
+Companion_UI/
+Difussion\ Models/
+JewelryBoxAI_Bot/
+Kodey_ai/
+LangGraph-Architect/
+LangSchool/
+MCP_SERVERS/
+Sent-11labs-3/
+Sentient-SRC/
+Sports_Betting/
+The-Gym\ Chatbot/
+bolt.new-any-llm/
+duelCoreAgents/
+gpt3-personal-assistant/
+grok-livekit/
+jewelry_voice_search_mcp/
+knowledge_base/
+langflow_knowledge_base/
+marketing-assistant/
+marketing-assistant\ -\ Copy/
+multiAgentMCP/
+of_folder/
+ooogle-review-bot/
+rick_folder/
+templates/
+vapi_capo/
+web_agent/
+Agentic-Solutions-Infra/ 

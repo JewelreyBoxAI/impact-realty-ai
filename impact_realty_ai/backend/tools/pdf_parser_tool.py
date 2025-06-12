@@ -11,6 +11,7 @@ import fitz  # PyMuPDF
 from typing import Dict, Any, List
 import re
 from datetime import datetime
+from backend.mock_utils import MOCK_MODE, store_document
 
 class PDFParserTool:
     def __init__(self):
@@ -52,6 +53,9 @@ class PDFParserTool:
             analysis = self._analyze_document(full_text)
             
             doc.close()
+            
+            if MOCK_MODE:
+                return store_document(doc)
             
             return {
                 "status": "success",

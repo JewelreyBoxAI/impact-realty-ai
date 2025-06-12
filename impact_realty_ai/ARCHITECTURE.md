@@ -596,7 +596,7 @@ Based on the frontend API client implementation, the system exposes the followin
     "workflow_id": "workflow_123",
     "parameters": {
         "agent_type": "recruitment",
-        "action": "run_full_pipeline",
+    "action": "run_full_pipeline", 
         "criteria": {
             "target_count": 15, 
             "geo": "Tampa"

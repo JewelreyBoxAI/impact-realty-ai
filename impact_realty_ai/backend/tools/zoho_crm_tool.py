@@ -10,6 +10,7 @@ import httpx
 from typing import Dict, Any, List
 import json
 from datetime import datetime
+from backend.mock_utils import MOCK_MODE, fetch_crm_data
 
 class ZohoCRMTool:
     def __init__(self):
@@ -95,6 +96,8 @@ class ZohoCRMTool:
         criteria_string = " and ".join(search_criteria) if search_criteria else ""
         
         try:
+            if MOCK_MODE:
+                return fetch_crm_data(f"Leads/search?criteria={criteria_string}&page=1&per_page=20")
             response = await self._make_request(
                 "GET", 
                 f"Leads/search?criteria={criteria_string}&page=1&per_page=20"
@@ -123,6 +126,8 @@ class ZohoCRMTool:
     async def get_candidate(self, candidate_id: str) -> Dict[str, Any]:
         """Get candidate details"""
         try:
+            if MOCK_MODE:
+                return fetch_crm_data(f"Leads/{candidate_id}")
             response = await self._make_request("GET", f"Leads/{candidate_id}")
             
             lead_data = response.get("data", [{}])[0]
@@ -166,6 +171,8 @@ class ZohoCRMTool:
     async def get_deal(self, deal_id: str) -> Dict[str, Any]:
         """Get deal information"""
         try:
+            if MOCK_MODE:
+                return fetch_crm_data(f"Deals/{deal_id}")
             response = await self._make_request("GET", f"Deals/{deal_id}")
             
             deal_data = response.get("data", [{}])[0]
@@ -188,6 +195,8 @@ class ZohoCRMTool:
         """Get commission agreements for a deal"""
         try:
             # Search for custom module or related records
+            if MOCK_MODE:
+                return fetch_crm_data(f"Commission_Splits/search?criteria=(Deal_ID:equals:{deal_id})")
             response = await self._make_request(
                 "GET", 
                 f"Commission_Splits/search?criteria=(Deal_ID:equals:{deal_id})"
@@ -218,6 +227,8 @@ class ZohoCRMTool:
     async def get_deal_documents(self, deal_id: str) -> List[Dict[str, Any]]:
         """Get all documents associated with a deal"""
         try:
+            if MOCK_MODE:
+                return fetch_crm_data(f"Deals/{deal_id}/Attachments")
             response = await self._make_request("GET", f"Deals/{deal_id}/Attachments")
             
             documents = []
@@ -246,6 +257,8 @@ class ZohoCRMTool:
         """Get approval status for a deal"""
         try:
             # Check custom approval workflow module
+            if MOCK_MODE:
+                return fetch_crm_data(f"Deal_Approvals/search?criteria=(Deal_ID:equals:{deal_id})")
             response = await self._make_request(
                 "GET", 
                 f"Deal_Approvals/search?criteria=(Deal_ID:equals:{deal_id})"
@@ -288,6 +301,8 @@ class ZohoCRMTool:
                 }]
             }
             
+            if MOCK_MODE:
+                return fetch_crm_data("Tasks", task_record)
             response = await self._make_request("POST", "Tasks", task_record)
             
             return {

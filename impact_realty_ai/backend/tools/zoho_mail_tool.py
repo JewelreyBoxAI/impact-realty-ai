@@ -9,6 +9,7 @@ import os
 import httpx
 from typing import Dict, Any, List
 from datetime import datetime
+from backend.mock_utils import MOCK_MODE, send_email
 
 class ZohoMailTool:
     def __init__(self):
@@ -115,6 +116,31 @@ This is an automated message from our AI recruitment system.
                 """.strip(),
                 "mailFormat": "html"
             }
+            
+            if MOCK_MODE:
+                return send_email(email, f"Exciting Real Estate Opportunity - {name}", f"""
+Dear {name},
+
+I hope this email finds you well. We've identified you as a potential candidate for an exciting opportunity with Impact Realty.
+
+We'd love to discuss how your background and experience could be a great fit for our growing team. 
+
+I've prepared a brief meeting slot for us to connect: {meeting_link}
+
+During our conversation, we'll cover:
+- Current opportunities in the Tampa Bay market
+- Our competitive commission structure
+- Support and training programs
+- Growth opportunities within our organization
+
+Looking forward to speaking with you soon!
+
+Best regards,
+Impact Realty Recruitment Team
+
+---
+This is an automated message from our AI recruitment system.
+                """.strip())
             
             response = await self._make_request("POST", "messages", email_data)
             

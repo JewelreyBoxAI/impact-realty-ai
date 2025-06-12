@@ -68,7 +68,7 @@ export function useUserActions(): UseUserActionsResult {
         .eq('action_id', actionId);
       console.log('[Debug] Fetched action_items:', actionItems);
       if (aiError) throw aiError;
-      const newSelectedIds = new Set(actionItems?.map((ai) => ai.item_id) || []);
+      const newSelectedIds = new Set<string>((actionItems ?? []).map((ai: any) => (ai as any).item_id));
       console.log('[Debug] Setting new selectedIds:', Array.from(newSelectedIds));
       setSelectedIds(newSelectedIds);
     } catch (e: any) {
@@ -98,12 +98,12 @@ export function useUserActions(): UseUserActionsResult {
             table: 'action_items',
             filter: `action_id=eq.${userActionId}`
           },
-          async (payload) => {
+          async (payload: any) => {
             console.log('[Debug] Real-time update received:', payload);
             await fetchOrCreateUserAction();
           }
         )
-        .subscribe((status) => {
+        .subscribe((status: any) => {
           console.log('[Debug] Subscription status:', status);
         });
 

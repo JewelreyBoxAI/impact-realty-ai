@@ -43,6 +43,9 @@
       ],
       "@/lib/*": [
         "src/lib/*"
+      ],
+      "@supabase/auth-helpers-nextjs": [
+        "src/lib/supabaseAuthStub"
       ]
     },
     "plugins": [

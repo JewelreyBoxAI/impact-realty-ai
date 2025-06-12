@@ -1,26 +1,30 @@
-import React, { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider, NavBar, Footer } from '../components'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Impact Realty AI',
-  description: 'Intelligent Agent System for Real Estate Operations',
+  title: 'Agentic OS - Impact Realty AI',
+  description: 'Advanced AI agent orchestration platform for real estate operations',
 }
 
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <main className="min-h-screen">
-          {children}
-        </main>
+    <html lang="en" className="dark">
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
+        <ThemeProvider>
+          <NavBar />
+          <main className="flex-1 bg-bg">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )

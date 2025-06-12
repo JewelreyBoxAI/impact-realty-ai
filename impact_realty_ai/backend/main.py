@@ -9,14 +9,14 @@ import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .agents.supervisor_agent import SupervisorAgent
-from .graphs.graph import (
+from agents.supervisor_agent import SupervisorAgent
+from graphs.graph import (
     create_main_graph, 
     create_graph_for_environment,
     initialize_workflow_state,
     execute_parallel_workflows
 )
-from .db.connection import initialize_database
+from db.connection import initialize_database
 
 # Configure logging
 logging.basicConfig(
@@ -152,7 +152,7 @@ async def demo_parallel_endpoint():
 async def demo_states_endpoint():
     """Show workflow state structures via API"""
     try:
-        from .graphs.graph import WorkflowState, RecruitmentState, ComplianceState
+        from graphs.graph import WorkflowState, RecruitmentState, ComplianceState
         
         states = {
             "base_workflow_state": {
@@ -297,7 +297,7 @@ async def demo_workflow_states():
     """Demonstrate different workflow state types"""
     logger.info("Demonstrating workflow state management")
     
-    from .graphs.graph import WorkflowState, RecruitmentState, ComplianceState
+    from graphs.graph import WorkflowState, RecruitmentState, ComplianceState
     
     # Show different state structures
     print("🔹 Base WorkflowState structure:")

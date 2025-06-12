@@ -1,35 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'impact-blue': {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-        },
+        bg: 'var(--color-bg)',
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        highlight: 'var(--color-highlight)',
+        accent: 'var(--color-accent)',
+        warn: 'var(--color-warning)',
+        error: 'var(--color-error)',
+        text: 'var(--color-text)',
+        surface: 'var(--color-surface)',
+        border: 'var(--color-border)',
+        muted: 'var(--color-muted)',
       },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
+      dropShadow: {
+        xl: '0 20px 25px rgba(0, 0, 0, 0.25)',
       },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
+      borderRadius: {
+        '2xl': '1rem',
       },
     },
   },
   plugins: [],
-} 
+}; 

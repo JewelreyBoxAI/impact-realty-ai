@@ -1,4 +1,16 @@
 const nextConfig = {
+  webpack: (config) => {
+    const path = require('path');
+    
+    // Add aliases for @ imports and Supabase stub
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, 'src'),
+      '@supabase/auth-helpers-nextjs': path.resolve(__dirname, 'src/lib/supabaseAuthStub')
+    };
+    
+    return config;
+  },
   images: {
     remotePatterns: [
       {

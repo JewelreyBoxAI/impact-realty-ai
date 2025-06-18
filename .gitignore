@@ -1,16 +1,12 @@
 # =============================================================================
-# IMPACT REALTY AI - ROOT LEVEL GITIGNORE
-# Only track the Impact Realty AI project, exclude all other projects
+# Parent Directory Protection 
 # =============================================================================
+# Exclude all files from parent directories
+../*
+../*/
 
 # =============================================================================
-# EXCLUDE ALL OTHER PROJECTS - Only track impact_realty_ai/
-# =============================================================================
-/*
-!/impact_realty_ai/
-
-# =============================================================================
-# Python & Virtual Environments
+# Python & Django
 # =============================================================================
 __pycache__/
 *.py[cod]
@@ -36,19 +32,22 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# Virtual environments (all variations)
+# =============================================================================
+# Virtual Environments (All Variations)
+# =============================================================================
 venv/
 env/
 ENV/
 .venv/
 .env/
+# Common virtual environment names
 *-venv/
 *_venv/
 *-env/
 *_env/
 langUI-venv/
 lang-venv/
-google-venv/
+impact-venv/
 myenv/
 virtualenv/
 
@@ -77,7 +76,7 @@ secrets.json
 *.db-wal
 
 # =============================================================================
-# Node.js / Frontend
+# Node.js / NextJS / Frontend
 # =============================================================================
 node_modules/
 npm-debug.log*
@@ -145,8 +144,15 @@ htmlcov/
 dmypy.json
 
 # =============================================================================
+# Jupyter Notebooks
+# =============================================================================
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# =============================================================================
 # AI/ML Specific
 # =============================================================================
+# Model files
 *.pkl
 *.pickle
 *.h5
@@ -158,10 +164,19 @@ models/
 checkpoints/
 wandb/
 mlruns/
+
+# Vector databases
 *.faiss
 *.index
 chroma_db/
 vector_store/
+
+# =============================================================================
+# Documentation Build
+# =============================================================================
+docs/_build/
+site/
+.mkdocs/
 
 # =============================================================================
 # Testing
@@ -185,56 +200,21 @@ dmypy.json
 .pytype/
 
 # =============================================================================
-# Large Files
+# Project Specific
 # =============================================================================
+# Local development files
+local_*
+test_*
+debug_*
+sample_*
+
+# Large files that shouldn't be in Git
 *.zip
 *.tar.gz
 *.rar
 *.7z
 
-# =============================================================================
-# Jupyter Notebooks
-# =============================================================================
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# =============================================================================
-# Project Specific Exclusions
-# =============================================================================
-# Exclude all top-level files except specific ones
-/*.py
-/*.json
-/*.txt
-/*.md
-!impact_realty_ai/
-
-# Exclude specific project directories that are showing up
-AI_trading_bot/
-Companion_UI/
-Difussion\ Models/
-JewelryBoxAI_Bot/
-Kodey_ai/
-LangGraph-Architect/
-LangSchool/
-MCP_SERVERS/
-Sent-11labs-3/
-Sentient-SRC/
-Sports_Betting/
-The-Gym\ Chatbot/
-bolt.new-any-llm/
-duelCoreAgents/
-gpt3-personal-assistant/
-grok-livekit/
-jewelry_voice_search_mcp/
-knowledge_base/
-langflow_knowledge_base/
-marketing-assistant/
-marketing-assistant\ -\ Copy/
-multiAgentMCP/
-of_folder/
-ooogle-review-bot/
-rick_folder/
-templates/
-vapi_capo/
-web_agent/
-Agentic-Solutions-Infra/ 
+# User uploads
+uploads/
+media/
+static_files/ 

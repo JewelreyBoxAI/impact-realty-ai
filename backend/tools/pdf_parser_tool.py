@@ -6,12 +6,20 @@ Parses PDF documents for compliance processing.
 """
 
 import os
-import hashlib
-import fitz  # PyMuPDF
-from typing import Dict, Any, List
-import re
+import json
+import logging
+from typing import Dict, Any, List, Optional
 from datetime import datetime
-from backend.mock_utils import MOCK_MODE, store_document
+import httpx
+import aiofiles
+from pathlib import Path
+import hashlib
+import mimetypes
+from PyPDF2 import PdfReader
+from docx import Document
+from mock_utils import MOCK_MODE, store_document
+
+logger = logging.getLogger(__name__)
 
 class PDFParserTool:
     def __init__(self):

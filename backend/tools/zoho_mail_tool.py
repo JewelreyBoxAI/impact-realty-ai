@@ -9,7 +9,7 @@ import os
 import httpx
 from typing import Dict, Any, List
 from datetime import datetime
-from backend.mock_utils import MOCK_MODE, send_email
+from mock_utils import MOCK_MODE, send_email
 
 class ZohoMailTool:
     def __init__(self):

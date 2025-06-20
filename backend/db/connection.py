@@ -5,9 +5,15 @@ Database Connection Management
 Handles PostgreSQL with PGVector initialization.
 """
 
-import logging
 import os
-from backend.mock_utils import MOCK_MODE, get_users, get_agents
+import sqlite3
+import logging
+from typing import Dict, Any, List, Optional
+from datetime import datetime
+import asyncio
+import aiosqlite
+from contextlib import asynccontextmanager
+from mock_utils import MOCK_MODE, get_users, get_agents
 
 logger = logging.getLogger(__name__)
 

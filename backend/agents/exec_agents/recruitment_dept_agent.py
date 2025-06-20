@@ -11,12 +11,12 @@ Handles the entire recruiting pipeline in one agent:
 import logging
 from typing import Dict, Any, List
 from datetime import datetime
-from ..tools.zoho_crm_tool import ZohoCRMTool
-from ..tools.license_verification_tool import LicenseVerificationTool
-from ..tools.zoho_calendar_tool import ZohoCalendarTool
-from ..tools.zoho_mail_tool import ZohoMailTool
-from ..tools.vapi_tool import VAPITool
-from ..memory.vector_memory_manager import VectorMemoryManager
+from tools.zoho_crm_tool import ZohoCRMTool
+from tools.license_verification_tool import LicenseVerificationTool
+from tools.zoho_calendar_tool import ZohoCalendarTool
+from tools.zoho_mail_tool import ZohoMailTool
+from tools.vapi_tool import VAPITool
+from memory.vector_memory_manager import VectorMemoryManager
 
 logger = logging.getLogger(__name__)
 

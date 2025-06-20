@@ -1,4 +1,4 @@
-from backend.mock_utils import MOCK_MODE
+from mock_utils import MOCK_MODE
 
 def fetch_crm_contacts():
     if MOCK_MODE:

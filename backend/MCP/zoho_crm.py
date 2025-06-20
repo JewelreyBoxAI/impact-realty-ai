@@ -6,7 +6,7 @@ Handles Zoho CRM API connections via MCP protocol.
 """
 
 import os
-from backend.mock_utils import MOCK_MODE, fetch_mcp_data
+from mock_utils import MOCK_MODE, fetch_mcp_data
 
 class ZohoCRMMCP:
     """MCP integration for Zoho CRM"""

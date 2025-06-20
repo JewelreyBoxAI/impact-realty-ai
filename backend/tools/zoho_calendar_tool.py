@@ -7,7 +7,7 @@ Handles Zoho Calendar API interactions.
 
 from typing import Dict, Any, List
 import os
-from backend.mock_utils import MOCK_MODE, fetch_calendar_events
+from mock_utils import MOCK_MODE, fetch_calendar_events
 
 class ZohoCalendarTool:
     async def propose_meeting_slots(self, email: str, title: str, duration_minutes: int) -> Dict[str, Any]:

@@ -10,7 +10,7 @@ import httpx
 from typing import Dict, Any, List
 import json
 from datetime import datetime
-from backend.mock_utils import MOCK_MODE, fetch_crm_data
+from mock_utils import MOCK_MODE, fetch_crm_data
 
 class ZohoCRMTool:
     def __init__(self):

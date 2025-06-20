@@ -1,21 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0C0F1A;
-  --bg-secondary: #151920;
-  --bg-card: #1A1F2E;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A0A9C0;
-  --accent-primary: #00FFFF;
-  --accent-secondary: #0891B2;
-  --border-primary: #2A3441;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
+  /* AgentOS Dashboard Dark Theme */
+  --color-primary: #3B82F6;
+  --color-background: #0F172A;
+  --color-card-bg: #1E293B;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E5E7EB;
+  --color-accent-green: #22C55E;
+  --color-border-light: #334155;
+  
+  /* Status Colors */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* Border Radius */
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  
+  /* Modern Professional Font Family Configuration */
+  --font-family-sans: var(--font-inter), 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-family-mono: var(--font-mono), 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+  
+  /* Font Optimization */
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-variant-ligatures: contextual;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -24,24 +45,67 @@
   margin: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  font-family: var(--font-inter), system-ui, sans-serif;
+/* Ensure proper layout */
+html, body, #__next {
+  transform: none;
+  position: relative;
+}
+
+html {
+  height: 100%;
+  font-family: var(--font-family-sans);
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+#__next {
+  height: 100%;
 }
 
 @layer base {
+  /* Headers use Inter - Clean Professional */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-orbitron), system-ui, sans-serif;
+    font-family: var(--font-family-sans);
     font-weight: 700;
     letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  /* Body text uses Inter */
+  p, span, div, label, input, button {
+    font-family: var(--font-family-sans);
+  }
+
+  /* Code uses Monospace */
+  code, pre, kbd, samp {
+    font-family: var(--font-family-mono);
+    font-size: 0.875rem;
   }
 
   a {
@@ -50,37 +114,239 @@ body {
   }
 
   button {
-    font-family: inherit;
+    font-family: var(--font-family-sans);
+    font-weight: 500;
   }
 }
 
 @layer components {
-  .agent-card {
-    @apply bg-[#1A1F2E] border border-[#2A3441] rounded-2xl p-6 transition-all duration-300 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-400/10;
+  /* AgentOS Dashboard Card Components */
+  .agentos-card {
+    @apply bg-card-bg border border-border-light rounded-agentos-lg p-6 shadow-agentos-lg;
   }
 
-  .agent-button-primary {
-    @apply bg-cyan-400 text-black font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/25;
+  .agentos-card-compact {
+    @apply bg-card-bg border border-border-light rounded-agentos p-4 shadow-agentos;
   }
 
-  .agent-button-secondary {
-    @apply bg-[#1A1F2E] border border-[#2A3441] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:border-cyan-400/50 hover:bg-[#151920];
+  /* AgentOS Button Styles */
+  .btn-agentos-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-agentos font-semibold transition-all duration-200 hover:bg-blue-600 shadow-md hover:shadow-lg;
   }
 
-  .agent-input {
-    @apply bg-[#151920] border border-[#2A3441] text-white px-4 py-3 rounded-xl transition-all duration-300 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none;
+  .btn-agentos-secondary {
+    @apply bg-slate-700 text-text-primary px-4 py-2 rounded-agentos font-semibold transition-all duration-200 hover:bg-slate-600 shadow-md;
   }
 
-  .agent-panel {
-    @apply bg-[#1A1F2E] border border-[#2A3441] rounded-2xl overflow-hidden backdrop-blur-sm;
+  .btn-agentos-success {
+    @apply bg-accent-green text-white px-4 py-2 rounded-agentos font-semibold transition-all duration-200 hover:bg-green-600 shadow-md;
   }
 
-  .glow-cyan {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  .btn-agentos-outline {
+    @apply border border-border-light text-text-secondary px-4 py-2 rounded-agentos font-semibold transition-all duration-200 hover:bg-slate-800 hover:text-text-primary;
   }
 
-  .neon-text {
-    color: #00FFFF;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  /* AgentOS Input Styles */
+  .input-agentos {
+    @apply bg-slate-800 border border-border-light text-text-primary px-4 py-2 rounded-agentos transition-all duration-200 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none placeholder-slate-400;
+  }
+
+  .textarea-agentos {
+    @apply bg-slate-800 border border-border-light text-text-primary px-4 py-3 rounded-agentos transition-all duration-200 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none placeholder-slate-400 resize-none;
+  }
+
+  /* AgentOS Sidebar Styles */
+  .agentos-sidebar {
+    @apply bg-card-bg w-64 h-screen flex flex-col border-r border-border-light;
+  }
+
+  .sidebar-nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-agentos text-text-secondary transition-all duration-200 hover:bg-slate-700 hover:text-text-primary cursor-pointer;
+  }
+
+  .sidebar-nav-item-active {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-agentos bg-primary text-white shadow-md;
+  }
+
+  /* AgentOS Typography Classes */
+  .text-agentos-title {
+    @apply text-2xl font-bold text-text-primary;
+  }
+
+  .text-agentos-subtitle {
+    @apply text-lg font-semibold text-text-secondary;
+  }
+
+  .text-agentos-body {
+    @apply text-base text-text-secondary;
+  }
+
+  .text-agentos-caption {
+    @apply text-sm text-slate-400;
+  }
+
+  .text-agentos-label {
+    @apply text-sm font-medium text-text-secondary;
+  }
+
+  /* AgentOS Status Indicators */
+  .status-agentos-success {
+    @apply bg-green-900/50 text-accent-green px-3 py-1 rounded-full text-xs font-medium border border-green-800;
+  }
+
+  .status-agentos-warning {
+    @apply bg-yellow-900/50 text-yellow-400 px-3 py-1 rounded-full text-xs font-medium border border-yellow-800;
+  }
+
+  .status-agentos-error {
+    @apply bg-red-900/50 text-red-400 px-3 py-1 rounded-full text-xs font-medium border border-red-800;
+  }
+
+  .status-agentos-info {
+    @apply bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full text-xs font-medium border border-blue-800;
+  }
+
+  .status-agentos-idle {
+    @apply bg-slate-800 text-slate-400 px-3 py-1 rounded-full text-xs font-medium border border-slate-700;
+  }
+
+  .status-agentos-running {
+    @apply bg-green-900/50 text-accent-green px-3 py-1 rounded-full text-xs font-medium border border-green-800 animate-pulse;
+  }
+
+  /* AgentOS Progress Bars */
+  .progress-agentos-bg {
+    @apply w-full bg-slate-800 rounded-full h-2;
+  }
+
+  .progress-agentos-fill {
+    @apply h-2 rounded-full transition-all duration-300;
+  }
+
+  .progress-agentos-success {
+    @apply bg-accent-green;
+  }
+
+  .progress-agentos-warning {
+    @apply bg-yellow-500;
+  }
+
+  .progress-agentos-primary {
+    @apply bg-primary;
+  }
+
+  /* AgentOS Layout Utilities */
+  .agentos-layout {
+    @apply bg-background h-screen flex;
+    position: relative;
+    width: 100%;
+  }
+
+  .agentos-main-content {
+    @apply flex-1 bg-background overflow-auto;
+    position: relative;
+  }
+
+  .agentos-content-container {
+    @apply p-6 space-y-6;
+  }
+
+  .agentos-grid {
+    @apply grid gap-6;
+  }
+
+  .agentos-grid-cols-1 {
+    @apply grid-cols-1;
+  }
+
+  .agentos-grid-cols-2 {
+    @apply grid-cols-1 lg:grid-cols-2;
+  }
+
+  .agentos-grid-cols-3 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .agentos-grid-cols-4 {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+
+  /* AgentOS Form Styles */
+  .form-group-agentos {
+    @apply space-y-2;
+  }
+
+  .form-label-agentos {
+    @apply block text-sm font-medium text-text-secondary;
+  }
+
+  /* AgentOS Modal/Drawer Styles */
+  .modal-agentos-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40;
+  }
+
+  .modal-agentos-content {
+    @apply bg-card-bg border border-border-light rounded-agentos-lg shadow-agentos-xl;
+  }
+
+  /* AgentOS Hover Effects */
+  .hover-agentos-card {
+    @apply transition-all duration-200 hover:shadow-agentos-lg hover:scale-[1.02];
+  }
+
+  .hover-agentos-subtle {
+    @apply transition-all duration-200 hover:bg-slate-800/50;
+  }
+
+  /* AgentOS Scrollbars */
+  .scrollbar-agentos {
+    scrollbar-width: thin;
+    scrollbar-color: #475569 #1e293b;
+  }
+
+  .scrollbar-agentos::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-agentos::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+
+  .scrollbar-agentos::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+  }
+
+  .scrollbar-agentos::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+
+  /* AgentOS Animations */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.2s ease-out;
   }
 }

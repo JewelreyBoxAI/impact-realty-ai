@@ -1,4 +1,4 @@
-from backend.mock_utils import MOCK_MODE
+from mock_utils import MOCK_MODE
 
 def send_email(to, subject, body):
     if MOCK_MODE:

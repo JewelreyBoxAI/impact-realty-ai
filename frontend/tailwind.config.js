@@ -9,32 +9,37 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Poppins', ...fontFamily.sans],
+        sans: ['Inter', ...fontFamily.sans],
+        heading: ['Inter', ...fontFamily.sans],
         body: ['Inter', ...fontFamily.sans]
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: 'hsl(var(--primary))',
-        secondary: 'hsl(var(--secondary))',
-        accent: 'hsl(var(--accent))',
-        muted: 'hsl(var(--muted))',
-        border: 'hsl(var(--border))',
-        card: 'hsl(var(--card))',
-        input: 'hsl(var(--input))',
-        error: 'hsl(var(--error))',
-        success: 'hsl(var(--success))'
+        // AgentOS Dashboard Color Palette
+        primary: '#3B82F6',
+        background: '#0F172A',
+        'card-bg': '#1E293B',
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#E5E7EB',
+        'accent-green': '#22C55E',
+        'border-light': '#334155',
+        
+        // Status colors
+        success: '#22C55E',
+        warning: '#F59E0B',
+        error: '#EF4444',
+        info: '#3B82F6'
       },
       boxShadow: {
-        glass: '0 2px 8px 0 rgba(30,30,30,0.06), 0 8px 24px 0 rgba(30,30,30,0.10)',
-        neumorph: '4px 4px 15px 0 rgba(0,0,0,0.07), -4px -4px 12px 0 rgba(255,255,255,0.09)'
+        'agentos': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'agentos-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        'agentos-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+
       },
-      backgroundImage: {
-        hero: 'linear-gradient(135deg, hsl(var(--primary)/0.7) 0%, hsl(var(--secondary)/0.7) 100%)',
-        card: 'linear-gradient(135deg, hsl(var(--muted)/0.4) 0%, hsl(var(--card)/0.8) 100%)'
-      },
-      transitionProperty: {
-        'spacing': 'margin, padding'
+
+      borderRadius: {
+        'agentos': '8px',
+        'agentos-lg': '12px',
+        'agentos-xl': '16px'
       }
     }
   },

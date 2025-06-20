@@ -1,4 +1,4 @@
-from backend.mock_utils import MOCK_MODE
+from mock_utils import MOCK_MODE
 
 def create_event(event_data):
     if MOCK_MODE:

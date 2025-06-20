@@ -1,4 +1,4 @@
-from backend.mock_utils import MOCK_MODE
+from mock_utils import MOCK_MODE
 
 def get_brokerage_report(agent_id):
     if MOCK_MODE:
